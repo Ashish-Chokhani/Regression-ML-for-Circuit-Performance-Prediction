@@ -111,6 +111,6 @@ This project is licensed under the IIITH
 
 ---
 
-For more detailed information, refer to the full report included in this repository.
+For more detailed information, refer to the full [report](https://github.com/Ashish-Chokhani/Regression-ML-for-Circuit-Performance-Prediction/blob/main/Docs/DVD%20Project%20Report.pdf)
 
 
