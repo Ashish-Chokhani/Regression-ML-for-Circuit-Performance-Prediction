@@ -1,0 +1,357 @@
+.INCLUDE 22nm_MGK.pm
+.OPTIONS GMIN=1e-020 ABSTOL=1e-18
+.INCLUDE AND.sub
+.INCLUDE AND_3.sub
+.INCLUDE OR.sub
+.INCLUDE XOR.sub
+.INCLUDE INVERTER.sub
+.PARAM Lmin=22n
+.PARAM Wmin=22n
+.PARAM Ldiff=44n
+.PARAM SUPPLY=0.8
+.global vdd gnd
+
+VDS vdd gnd 'SUPPLY'
+
+Vin1 in1 gnd 0
+Vin2 in5 gnd 0
+Vin3 in9 gnd 0
+Vin4 in13 gnd 'SUPPLY'
+Vin5 in17 gnd 0
+Vin6 in21 gnd 0
+Vin7 in25 gnd 0
+Vin8 in29 gnd 0
+Vin9 in33 gnd 0
+Vin10 in37 gnd 0
+Vin11 in41 gnd 'SUPPLY'
+Vin12 in45 gnd 0
+Vin13 in49 gnd 0
+Vin14 in53 gnd 0
+Vin15 in57 gnd 0
+Vin16 in61 gnd 0
+Vin17 in65 gnd 0
+Vin18 in69 gnd 0
+Vin19 in73 gnd 0
+Vin20 in77 gnd 'SUPPLY'
+Vin21 in81 gnd 0
+Vin22 in85 gnd 0
+Vin23 in89 gnd 0
+Vin24 in93 gnd 0
+Vin25 in97 gnd 0
+Vin26 in101 gnd 0
+Vin27 in105 gnd 0
+Vin28 in109 gnd 0
+Vin29 in113 gnd 0
+Vin30 in117 gnd 0
+Vin31 in121 gnd 0
+Vin32 in125 gnd 0
+Vin33 in129 gnd 0
+Vin34 in130 gnd 0
+Vin35 in131 gnd 'SUPPLY'
+Vin36 in132 gnd 0
+Vin37 in133 gnd 0
+Vin38 in134 gnd 0
+Vin39 in135 gnd 0
+Vin40 in136 gnd 0
+Vin41 in137 gnd 0
+
+*************************************************************************
+
+X_XA0 in1 in5 XA__0 vdd gnd XOR
+X_XA1 in9 in13 XA__1 vdd gnd XOR
+X_XA2 in17 in21 XA__2 vdd gnd XOR
+X_XA3 in25 in29 XA__3 vdd gnd XOR
+X_XA4 in33 in37 XA__4 vdd gnd XOR
+X_XA5 in41 in45 XA__5 vdd gnd XOR
+X_XA6 in49 in53 XA__6 vdd gnd XOR
+X_XA7 in57 in61 XA__7 vdd gnd XOR
+X_XA8 in65 in69 XA__8 vdd gnd XOR
+X_XA9 in73 in77 XA__9 vdd gnd XOR
+X_XA10 in81 in85 XA__10 vdd gnd XOR
+X_XA11 in89 in93 XA__11 vdd gnd XOR
+X_XA12 in97 in101 XA__12 vdd gnd XOR
+X_XA13 in105 in109 XA__13 vdd gnd XOR
+X_XA14 in113 in117 XA__14 vdd gnd XOR
+X_XA15 in121 in125 XA__15 vdd gnd XOR
+
+X_F0 XA__0 XA__1 F__0 vdd gnd XOR
+X_F1 XA__2 XA__3 F__1 vdd gnd XOR
+X_F2 XA__4 XA__5 F__2 vdd gnd XOR
+X_F3 XA__6 XA__7 F__3 vdd gnd XOR
+X_F4 XA__8 XA__9 F__4 vdd gnd XOR
+X_F5 XA__10 XA__11 F__5 vdd gnd XOR
+X_F6 XA__12 XA__13 F__6 vdd gnd XOR
+X_F7 XA__14 XA__15 F__7 vdd gnd XOR
+
+X_H0 in129 in137 H__0 vdd gnd AND
+X_H1 in130 in137 H__1 vdd gnd AND
+X_H2 in131 in137 H__2 vdd gnd AND
+X_H3 in132 in137 H__3 vdd gnd AND
+X_H4 in133 in137 H__4 vdd gnd AND
+X_H5 in134 in137 H__5 vdd gnd AND
+X_H6 in135 in137 H__6 vdd gnd AND
+X_H7 in136 in137 H__7 vdd gnd AND
+
+X_XB0 in1 in17 XB__0 vdd gnd XOR
+X_XB1 in5 in21 XB__1 vdd gnd XOR
+X_XB2 in9 in25 XB__2 vdd gnd XOR
+X_XB3 in13 in29 XB__3 vdd gnd XOR
+X_XB4 in65 in81 XB__4 vdd gnd XOR
+X_XB5 in69 in85 XB__5 vdd gnd XOR
+X_XB6 in73 in89 XB__6 vdd gnd XOR
+X_XB7 in77 in93 XB__7 vdd gnd XOR
+
+X_XC0 in33 in49 XC__0 vdd gnd XOR
+X_XC1 in37 in53 XC__1 vdd gnd XOR
+X_XC2 in41 in57 XC__2 vdd gnd XOR
+X_XC3 in45 in61 XC__3 vdd gnd XOR
+X_XC4 in97 in113 XC__4 vdd gnd XOR
+X_XC5 in101 in117 XC__5 vdd gnd XOR
+X_XC6 in105 in121 XC__6 vdd gnd XOR
+X_XC7 in109 in125 XC__7 vdd gnd XOR
+
+X_XE0 XB__0 XC__0 XE__0 vdd gnd XOR
+X_XE1 XB__1 XC__1 XE__1 vdd gnd XOR
+X_XE2 XB__2 XC__2 XE__2 vdd gnd XOR
+X_XE3 XB__3 XC__3 XE__3 vdd gnd XOR
+X_XE4 XB__4 XC__4 XE__4 vdd gnd XOR
+X_XE5 XB__5 XC__5 XE__5 vdd gnd XOR
+X_XE6 XB__6 XC__6 XE__6 vdd gnd XOR
+X_XE7 XB__7 XC__7 XE__7 vdd gnd XOR
+
+X_G0 F__0 F__1 G__0 vdd gnd XOR
+X_G1 F__2 F__3 G__1 vdd gnd XOR
+X_G2 F__0 F__2 G__2 vdd gnd XOR
+X_G3 F__1 F__3 G__3 vdd gnd XOR
+X_G4 F__4 F__5 G__4 vdd gnd XOR
+X_G5 F__6 F__7 G__5 vdd gnd XOR
+X_G6 F__4 F__6 G__6 vdd gnd XOR
+X_G7 F__5 F__7 G__7 vdd gnd XOR
+
+X_XD0 G__4 H__0 XD__0 vdd gnd XOR
+X_XD1 G__5 H__1 XD__1 vdd gnd XOR
+X_XD2 G__6 H__2 XD__2 vdd gnd XOR
+X_XD3 G__7 H__3 XD__3 vdd gnd XOR
+X_XD4 G__0 H__4 XD__4 vdd gnd XOR
+X_XD5 G__1 H__5 XD__5 vdd gnd XOR
+X_XD6 G__2 H__6 XD__6 vdd gnd XOR
+X_XD7 G__3 H__7 XD__7 vdd gnd XOR
+
+X_S0 XD__0 XE__0 S__0 vdd gnd XOR
+X_S1 XD__1 XE__1 S__1 vdd gnd XOR
+X_S2 XD__2 XE__2 S__2 vdd gnd XOR
+X_S3 XD__3 XE__3 S__3 vdd gnd XOR
+X_S4 XD__4 XE__4 S__4 vdd gnd XOR
+X_S5 XD__5 XE__5 S__5 vdd gnd XOR
+X_S6 XD__6 XE__6 S__6 vdd gnd XOR
+X_S7 XD__7 XE__7 S__7 vdd gnd XOR
+
+
+
+* Syndrome *
+
+*************************************************************************
+
+X_S0B0 S__0 S0B__0 vdd gnd INVERTER
+X_S0B1 S__0 S0B__1 vdd gnd INVERTER
+X_S0B2 S__0 S0B__2 vdd gnd INVERTER
+X_S0B3 S__0 S0B__3 vdd gnd INVERTER
+X_S0B4 S__0 S0B__4 vdd gnd INVERTER
+X_S1B0 S__1 S1B__0 vdd gnd INVERTER
+X_S1B1 S__1 S1B__1 vdd gnd INVERTER
+X_S1B2 S__1 S1B__2 vdd gnd INVERTER
+X_S1B3 S__1 S1B__3 vdd gnd INVERTER
+X_S1B4 S__1 S1B__4 vdd gnd INVERTER
+X_S2B0 S__2 S2B__0 vdd gnd INVERTER
+X_S2B1 S__2 S2B__1 vdd gnd INVERTER
+X_S2B2 S__2 S2B__2 vdd gnd INVERTER
+X_S2B3 S__2 S2B__3 vdd gnd INVERTER
+X_S2B4 S__2 S2B__4 vdd gnd INVERTER
+X_S3B0 S__3 S3B__0 vdd gnd INVERTER
+X_S3B1 S__3 S3B__1 vdd gnd INVERTER
+X_S3B2 S__3 S3B__2 vdd gnd INVERTER
+X_S3B3 S__3 S3B__3 vdd gnd INVERTER
+X_S3B4 S__3 S3B__4 vdd gnd INVERTER
+X_S4B0 S__4 S4B__0 vdd gnd INVERTER
+X_S4B1 S__4 S4B__1 vdd gnd INVERTER
+X_S4B2 S__4 S4B__2 vdd gnd INVERTER
+X_S4B3 S__4 S4B__3 vdd gnd INVERTER
+X_S4B4 S__4 S4B__4 vdd gnd INVERTER
+X_S5B0 S__5 S5B__0 vdd gnd INVERTER
+X_S5B1 S__5 S5B__1 vdd gnd INVERTER
+X_S5B2 S__5 S5B__2 vdd gnd INVERTER
+X_S5B3 S__5 S5B__3 vdd gnd INVERTER
+X_S5B4 S__5 S5B__4 vdd gnd INVERTER
+X_S6B0 S__6 S6B__0 vdd gnd INVERTER
+X_S6B1 S__6 S6B__1 vdd gnd INVERTER
+X_S6B2 S__6 S6B__2 vdd gnd INVERTER
+X_S6B3 S__6 S6B__3 vdd gnd INVERTER
+X_S6B4 S__6 S6B__4 vdd gnd INVERTER
+X_S7B0 S__7 S7B__0 vdd gnd INVERTER
+X_S7B1 S__7 S7B__1 vdd gnd INVERTER
+X_S7B2 S__7 S7B__2 vdd gnd INVERTER
+X_S7B3 S__7 S7B__3 vdd gnd INVERTER
+X_S7B4 S__7 S7B__4 vdd gnd INVERTER
+
+X_T0_temp S0B__0 S1B__0 S2B__0 T0_temp vdd gnd AND_3
+X_T0 T0_temp S__3 T__0 vdd gnd AND
+X_T1_temp S0B__1 S1B__1 S__2 T1_temp vdd gnd AND_3
+X_T1 T1_temp S3B__0 T__1 vdd gnd AND
+X_T2_temp S0B__2 S__1 S2B__1 T2_temp vdd gnd AND_3
+X_T2 T2_temp S3B__1 T__2 vdd gnd AND
+X_T3_temp S__0 S1B__2 S2B__2 T3_temp vdd gnd AND_3
+X_T3 T3_temp S3B__2 T__3 vdd gnd AND
+X_T4_temp S4B__0 S5B__0 S6B__0 T4_temp vdd gnd AND_3
+X_T4 T4_temp S__7 T__4 vdd gnd AND
+X_T5_temp S4B__1 S5B__1 S__6 T5_temp vdd gnd AND_3
+X_T5 T5_temp S7B__0 T__5 vdd gnd AND
+X_T6_temp S4B__2 S__5 S6B__1 T6_temp vdd gnd AND_3
+X_T6 T6_temp S7B__1 T__6 vdd gnd AND
+X_T7_temp S__4 S5B__2 S6B__2 T7_temp vdd gnd AND_3
+X_T7 T7_temp S7B__2 T__7 vdd gnd AND
+
+X_U0_temp1 T__0 T__1 T0_out1 vdd gnd OR
+X_U0_temp2 T0_out1 T__2 T0_out2 vdd gnd OR
+X_U0 T0_out2 T__3 U__0 vdd gnd OR
+X_U1_temp1 T__4 T__5 T1_out1 vdd gnd OR
+X_U1_temp2 T1_out1 T__6 T1_out2 vdd gnd OR
+X_U1 T1_out2 T__7 U__1 vdd gnd OR
+
+X_W0_temp S__4 S5B__3 S__6 W0_temp vdd gnd AND_3
+X_W0 W0_temp S7B__3 U__0 W__0 vdd gnd AND_3
+X_W1_temp S__4 S5B__4 S6B__3 W1_temp vdd gnd AND_3
+X_W1 W1_temp S__7 U__0 W__1 vdd gnd AND_3
+X_W2_temp S4B__3 S__5 S__6 W2_temp vdd gnd AND_3
+X_W2 W2_temp S7B__4 U__0 W__2 vdd gnd AND_3
+X_W3_temp S4B__4 S__5 S6B__4 W3_temp vdd gnd AND_3
+X_W3 W3_temp S__7 U__0 W__3 vdd gnd AND_3
+X_W4_temp S__0 S1B__3 S__2 W4_temp vdd gnd AND_3
+X_W4 W4_temp S3B__3 U__1 W__4 vdd gnd AND_3
+X_W5_temp S__0 S1B__4 S2B__3 W5_temp vdd gnd AND_3
+X_W5 W5_temp S__3 U__1 W__5 vdd gnd AND_3
+X_W6_temp S0B__3 S__1 S__2 W6_temp vdd gnd AND_3
+X_W6 W6_temp S3B__4 U__1 W__6 vdd gnd AND_3
+X_W7_temp S0B__4 S__1 S2B__4 W7_temp vdd gnd AND_3
+X_W7 W7_temp S__3 U__1 W__7 vdd gnd AND_3
+
+X_E0 W__0 S__0 E__0 vdd gnd AND
+X_E1 W__0 S__1 E__1 vdd gnd AND
+X_E2 W__0 S__2 E__2 vdd gnd AND
+X_E3 W__0 S__3 E__3 vdd gnd AND
+X_E4 W__1 S__0 E__4 vdd gnd AND
+X_E5 W__1 S__1 E__5 vdd gnd AND
+X_E6 W__1 S__2 E__6 vdd gnd AND
+X_E7 W__1 S__3 E__7 vdd gnd AND
+X_E8 W__2 S__0 E__8 vdd gnd AND
+X_E9 W__2 S__1 E__9 vdd gnd AND
+X_E10 W__2 S__2 E__10 vdd gnd AND
+X_E11 W__2 S__3 E__11 vdd gnd AND
+X_E12 W__3 S__0 E__12 vdd gnd AND
+X_E13 W__3 S__1 E__13 vdd gnd AND
+X_E14 W__3 S__2 E__14 vdd gnd AND
+X_E15 W__3 S__3 E__15 vdd gnd AND
+X_E16 W__4 S__4 E__16 vdd gnd AND
+X_E17 W__4 S__5 E__17 vdd gnd AND
+X_E18 W__4 S__6 E__18 vdd gnd AND
+X_E19 W__4 S__7 E__19 vdd gnd AND
+X_E20 W__5 S__4 E__20 vdd gnd AND
+X_E21 W__5 S__5 E__21 vdd gnd AND
+X_E22 W__5 S__6 E__22 vdd gnd AND
+X_E23 W__5 S__7 E__23 vdd gnd AND
+X_E24 W__6 S__4 E__24 vdd gnd AND
+X_E25 W__6 S__5 E__25 vdd gnd AND
+X_E26 W__6 S__6 E__26 vdd gnd AND
+X_E27 W__6 S__7 E__27 vdd gnd AND
+X_E28 W__7 S__4 E__28 vdd gnd AND
+X_E29 W__7 S__5 E__29 vdd gnd AND
+X_E30 W__7 S__6 E__30 vdd gnd AND
+X_E31 W__7 S__7 E__31 vdd gnd AND
+
+X_OD0 in1 E__0 out724 vdd gnd XOR
+X_OD1 in5 E__1 out725 vdd gnd XOR
+X_OD2 in9 E__2 out726 vdd gnd XOR
+X_OD3 in13 E__3 out727 vdd gnd XOR
+X_OD4 in17 E__4 out728 vdd gnd XOR
+X_OD5 in21 E__5 out729 vdd gnd XOR
+X_OD6 in25 E__6 out730 vdd gnd XOR
+X_OD7 in29 E__7 out731 vdd gnd XOR
+X_OD8 in33 E__8 out732 vdd gnd XOR
+X_OD9 in37 E__9 out733 vdd gnd XOR
+X_OD10 in41 E__10 out734 vdd gnd XOR
+X_OD11 in45 E__11 out735 vdd gnd XOR
+X_OD12 in49 E__12 out736 vdd gnd XOR
+X_OD13 in53 E__13 out737 vdd gnd XOR
+X_OD14 in57 E__14 out738 vdd gnd XOR
+X_OD15 in61 E__15 out739 vdd gnd XOR
+X_OD16 in65 E__16 out740 vdd gnd XOR
+X_OD17 in69 E__17 out741 vdd gnd XOR
+X_OD18 in73 E__18 out742 vdd gnd XOR
+X_OD19 in77 E__19 out743 vdd gnd XOR
+X_OD20 in81 E__20 out744 vdd gnd XOR
+X_OD21 in85 E__21 out745 vdd gnd XOR
+X_OD22 in89 E__22 out746 vdd gnd XOR
+X_OD23 in93 E__23 out747 vdd gnd XOR
+X_OD24 in97 E__24 out748 vdd gnd XOR
+X_OD25 in101 E__25 out749 vdd gnd XOR
+X_OD26 in105 E__26 out750 vdd gnd XOR
+X_OD27 in109 E__27 out751 vdd gnd XOR
+X_OD28 in113 E__28 out752 vdd gnd XOR
+X_OD29 in117 E__29 out753 vdd gnd XOR
+X_OD30 in121 E__30 out754 vdd gnd XOR
+X_OD31 in125 E__31 out755 vdd gnd XOR
+
+
+
+* Correction *
+
+*Definizione del tipo di analisi
+.CONTROL
+
+*Voltages: drain gate source
+*Current: drain gate source body
+
+dc TEMP 85 85 85
+print V(in1) I(Vin1)
+print V(in5) I(Vin2)
+print V(in9) I(Vin3)
+print V(in13) I(Vin4)
+print V(in17) I(Vin5)
+print V(in21) I(Vin6)
+print V(in25) I(Vin7)
+print V(in29) I(Vin8)
+print V(in33) I(Vin9)
+print V(in37) I(Vin10)
+print V(in41) I(Vin11)
+print V(in45) I(Vin12)
+print V(in49) I(Vin13)
+print V(in53) I(Vin14)
+print V(in57) I(Vin15)
+print V(in61) I(Vin16)
+print V(in65) I(Vin17)
+print V(in69) I(Vin18)
+print V(in73) I(Vin19)
+print V(in77) I(Vin20)
+print V(in81) I(Vin21)
+print V(in85) I(Vin22)
+print V(in89) I(Vin23)
+print V(in93) I(Vin24)
+print V(in97) I(Vin25)
+print V(in101) I(Vin26)
+print V(in105) I(Vin27)
+print V(in109) I(Vin28)
+print V(in113) I(Vin29)
+print V(in117) I(Vin30)
+print V(in121) I(Vin31)
+print V(in125) I(Vin32)
+print V(in129) I(Vin33)
+print V(in130) I(Vin34)
+print V(in131) I(Vin35)
+print V(in132) I(Vin36)
+print V(in133) I(Vin37)
+print V(in134) I(Vin38)
+print V(in135) I(Vin39)
+print V(in136) I(Vin40)
+print V(in137) I(Vin41)
+quit
+.ENDC
+.END

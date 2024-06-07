@@ -1,0 +1,47 @@
+.INCLUDE 22nm_MGK.pm
+.OPTIONS GMIN=1e-020 ABSTOL=1e-18
+.INCLUDE NAND.sub
+.PARAM Lmin=22n
+.PARAM Wmin=22n
+.PARAM Ldiff=44n
+.PARAM SUPPLY=0.8
+.global vdd gnd
+
+VDS vdd gnd 'SUPPLY'
+
+*Vin1 Va gnd pulse 0 'SUPPLY' 0ns 1ps 1ps 1000ps 2000ps
+*Vin2 Vb gnd dc 'SUPPLY'
+*Vin3 Vc gnd dc 'SUPPLY'
+
+*Vin1 Va gnd dc 'SUPPLY'
+*Vin2 Vb gnd pulse 0 'SUPPLY' 0ns 1ps 1ps 1000ps 2000ps
+*Vin3 Vc gnd dc 'SUPPLY'
+
+*Vin1 Va gnd dc 'SUPPLY'
+*Vin2 Vb gnd dc 'SUPPLY'
+*Vin3 Vc gnd pulse 0 'SUPPLY' 0ns 1ps 1ps 1000ps 2000ps
+
+
+X1 Va Vb Vc Vout vdd gnd NAND 
+
+Cqload Vout gnd 1f
+
+.tran 0.1ps 3600ps
+
+*.measure tran delay_LH TRIG v(Va) VAL = 'SUPPLY/2' FALL =1 TARG v(Vout) VAL = 'SUPPLY/2' RISE =1 
+*.measure tran delay_HL TRIG v(Va) VAL = 'SUPPLY/2' RISE =1 TARG v(Vout) VAL = 'SUPPLY/2' FALL=1
+
+*.measure tran delay_LH TRIG v(Vb) VAL = 'SUPPLY/2' FALL =1 TARG v(Vout) VAL = 'SUPPLY/2' RISE =1 
+*.measure tran delay_HL TRIG v(Vb) VAL = 'SUPPLY/2' RISE =1 TARG v(Vout) VAL = 'SUPPLY/2' FALL=1
+
+*.measure tran delay_LH TRIG v(Vc) VAL = 'SUPPLY/2' FALL =1 TARG v(Vout) VAL = 'SUPPLY/2' RISE =1 
+*.measure tran delay_HL TRIG v(Vc) VAL = 'SUPPLY/2' RISE =1 TARG v(Vout) VAL = 'SUPPLY/2' FALL=1
+
+
+.CONTROL
+dc TEMP 85 85 85
+run
+*print V(Va) V(Vb) V(Vc) V(Vout)
+quit
+.ENDC
+.END

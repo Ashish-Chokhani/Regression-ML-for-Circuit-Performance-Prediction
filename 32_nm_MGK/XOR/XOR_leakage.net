@@ -1,0 +1,117 @@
+*CONDUCTION NMOS W1
+
+.INCLUDE 32nm_MGK.pm
+.OPTIONS GMIN=1e-020 ABSTOL=1e-18
+*.INCLUDE XOR.sub
+
+*Definizione dei parametri
+.PARAM Lmin=32n
+.PARAM Wmin=32n
+.PARAM Ldiff=64n
+.PARAM SUPPLY=0.9
+.global vdd gnd
+Vx vdd gnd 'SUPPLY'
+
+Vin1 Va gnd 0
+Vin2 Vb gnd 0
+
+Mp5 drain_mp5 Va source_mp5 body_mp5 pmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mp1 drain_mp1 gate_mp1 source_mp1 body_mp1 pmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mp2 drain_mp2 Vb source_mp2 body_mp2 pmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mp3 drain_mp3 Va source_mp3 body_mp3 pmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mp4 drain_mp4 gate_mp4 source_mp4 body_mp4 pmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mp6 drain_mp6 Vb source_mp6 body_mp6 pmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mn5 drain_mn5 Va source_mn5 body_mn5 nmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mn1 drain_mn1 gate_mn1 source_mn1 body_mn1 nmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mn2 drain_mn2 gate_mn2 source_mn2 body_mn2 nmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mn3 drain_mn3 Va source_mn3 body_mn3 nmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mn4 drain_mn4 Vb source_mn4 body_mn4 nmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mn6 drain_mn6 Vb_c source_mn6 body_mn6 nmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+
+V_source_mp1 source_mp1 vdd  0
+V_source_mp2 source_mp2 drain_mp1  0
+V_connect1 drain_mp2 Vout 0
+V_connect2 drain_mp4 Vout 0
+V_source_mp3 source_mp3 Vdd  0
+V_source_mp4 source_mp4 drain_mp3  0
+V_source_mp5 source_mp5 vdd  0
+V_source_mp6 source_mp6 vdd  0
+
+V_drain_mp1 drain_mp1 source_mp2 0
+V_drain_mp2 drain_mp2 Vout 0
+V_drain_mp3 drain_mp3 source_mp4 0
+V_drain_mp4 drain_mp4 Vout 0
+V_drain_mp5 drain_mp5 Va_c 0
+V_drain_mp6 drain_mp6 Vb_c 0
+
+V_body_mp1 body_mp1 gnd 'SUPPLY'
+V_body_mp2 body_mp2 gnd 'SUPPLY'
+V_body_mp3 body_mp3 gnd 'SUPPLY'
+V_body_mp4 body_mp4 gnd 'SUPPLY'
+V_body_mp5 body_mp5 gnd 'SUPPLY'
+V_body_mp6 body_mp6 gnd 'SUPPLY'
+
+V_drain_mn1 drain_mn1 Vout 0
+V_drain_mn2 drain_mn2 source_mn1 0
+V_drain_mn3 drain_mn3 Vout 0
+V_drain_mn4 drain_mn4 source_mn3 0
+V_drain_mn5 drain_mn5 Va_c 0
+V_drain_mn6 drain_mn6 Vb_c 0
+
+V_body_mn1 body_mn1 gnd 0
+V_body_mn2 body_mn2 gnd 0
+V_body_mn3 body_mn3 gnd 0
+V_body_mn4 body_mn4 gnd 0
+V_body_mn5 body_mn5 gnd 0
+V_body_mn6 body_mn6 gnd 0
+
+V_source_mn1 source_mn1 drain_mn2 0
+V_source_mn2 source_mn2 gnd 0
+V_source_mn3 source_mn3 drain_mn4 0
+V_source_mn4 source_mn4 gnd 0
+V_source_mn5 source_mn5 gnd 0
+V_source_mn6 source_mn6 gnd 0
+
+V_gs_mp1  gate_mp1 Va_c 0
+V_gs_mp4  gate_mp4 Vb_c 0
+V_gs_mn1  gate_mn1 Va_c 0
+V_gs_mn2  gate_mn2 Vb_c 0
+
+
+*Definizione del tipo di analisi
+.CONTROL
+
+*Voltages: drain gate source
+*Current: drain gate source body
+
+dc TEMP 85 85 85
+print  V(drain_mp1) V(gate_mp1) V(source_mp1)
+print I(V_drain_mp1) I(V_gs_mp1) I(V_source_mp1) I(V_body_mp1)
+print  V(drain_mp2) V(Vb) V(source_mp2)
+print I(V_drain_mp2) I(Vin2) I(V_source_mp2) I(V_body_mp2)
+print  V(drain_mp3) V(Va) V(source_mp3)
+print I(V_drain_mp3) I(Vin1) I(V_source_mp3) I(V_body_mp3)
+print  V(drain_mp4) V(gate_mp4) V(source_mp4)
+print I(V_drain_mp4) I(V_gs_mp4) I(V_source_mp4) I(V_body_mp4)
+print  V(drain_mp5) V(Va) V(source_mp5)
+print I(V_drain_mp5) I(Vin1) I(V_source_mp5) I(V_body_mp5)
+print  V(drain_mp6) V(Vb) V(source_mp6)
+print I(V_drain_mp6) I(Vin2) I(V_source_mp6) I(V_body_mp6)
+
+
+print  V(drain_mn1) V(gate_mn1) V(source_mn1)
+print I(V_drain_mn1) I(V_gs_mn1) I(V_source_mn1) I(V_body_mn1)
+print  V(drain_mn2) V(gate_mn2) V(source_mn2)
+print I(V_source_mn1) I(V_gs_mn2) I(V_source_mn2) I(V_body_mn2)
+print  V(drain_mn3) V(Va) V(source_mn3)
+print I(V_drain_mn3) I(Vin1) I(V_source_mn3) I(V_body_mn3)
+print  V(drain_mn4) V(Vb) V(source_mn4)
+print I(V_drain_mn4) I(Vin2) I(V_source_mn4) I(V_body_mn4)
+print  V(drain_mn5) V(Va) V(source_mn5)
+print I(V_drain_mn5) I(Vin1) I(V_source_mn5) I(V_body_mn5)
+print  V(drain_mn6) V(Vb) V(source_mn6)
+print I(V_drain_mn6) I(Vin2) I(V_source_mn6) I(V_body_mn6)
+
+quit
+.ENDC
+.END

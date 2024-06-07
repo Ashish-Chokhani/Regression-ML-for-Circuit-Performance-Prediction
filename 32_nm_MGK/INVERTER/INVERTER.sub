@@ -1,0 +1,5 @@
+.subckt INVERTER Va Vout vdd gnd
+    Mp1 Vout Va vdd vdd pmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+    Mn1 Vout Va gnd gnd nmos W={Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+
+.ends INVERTER

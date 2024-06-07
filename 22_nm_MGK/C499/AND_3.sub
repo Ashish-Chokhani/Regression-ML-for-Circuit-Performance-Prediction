@@ -1,0 +1,9 @@
+.subckt AND_3 Va Vb Vc Vout vdd gnd
+
+.INCLUDE NAND_3.sub
+.INCLUDE INVERTER.sub
+
+x1 Va Vb Vc Vout1 vdd gnd NAND_3
+x2 Vout1 Vout vdd gnd INVERTER
+
+.ends AND_3

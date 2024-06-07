@@ -1,0 +1,30 @@
+.INCLUDE 22nm_HP.pm
+.OPTIONS GMIN=1e-020 ABSTOL=1e-18
+.INCLUDE INVERTER.sub
+.PARAM Lmin=22n
+.PARAM Wmin=22n
+.PARAM Ldiff=44n
+.PARAM SUPPLY=0.8
+.global vdd gnd
+
+VDS vdd gnd 'SUPPLY'
+
+*Vin1 Va gnd pulse 0 'SUPPLY' 0ns 1ps 1ps 1000ps 2000ps
+
+X1 Va Vout vdd gnd INVERTER 
+
+Cqload Vout gnd 1f
+
+.tran 0.1ps 3600ps
+
+*.measure tran delay_LH TRIG v(Va) VAL = 'SUPPLY/2' FALL =1 TARG v(Vout) VAL = 'SUPPLY/2' RISE =1 
+*.measure tran delay_HL TRIG v(Va) VAL = 'SUPPLY/2' RISE =1 TARG v(Vout) VAL = 'SUPPLY/2' FALL=1
+
+
+.CONTROL
+dc TEMP 85 85 85
+run
+*print V(Va) V(Vout)
+quit
+.ENDC
+.END

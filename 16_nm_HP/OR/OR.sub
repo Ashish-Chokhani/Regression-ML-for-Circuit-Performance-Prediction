@@ -1,0 +1,9 @@
+.subckt OR Va Vb Vout vdd gnd
+
+.INCLUDE NOR/NOR.sub
+.INCLUDE INVERTER/INVERTER.sub
+
+x1 Va Vb Vout1 vdd gnd NOR
+x2 Vout1 Vout vdd gnd INVERTER
+
+.ends OR

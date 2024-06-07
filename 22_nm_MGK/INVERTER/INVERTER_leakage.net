@@ -1,0 +1,41 @@
+*CONDUCTION NMOS W1
+
+.INCLUDE 22nm_MGK.pm
+.OPTIONS GMIN=1e-020 ABSTOL=1e-18
+*.INCLUDE INVERTER.sub
+
+*Definizione dei parametri
+.PARAM Lmin=22n
+.PARAM Wmin=22n
+.PARAM Ldiff=44n
+.PARAM SUPPLY=0.8
+.global vdd gnd
+Vx vdd gnd 'SUPPLY'
+
+Vin1 Va gnd 0
+
+Mp drain_mp Va source_mp body_mp pmos W={2*Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+Mn drain_mn Va source_mn body_mn nmos W={Wmin} L={Lmin} AS={Wmin*Ldiff} AD={Wmin*Ldiff} PS={2*(Ldiff+Wmin)} PD={2*(Ldiff+Wmin)}
+
+V_source_mp source_mp vdd 0
+V_drain_mp drain_mp Vout 0
+V_body_mp body_mp gnd 'SUPPLY'
+V_drain_mn drain_mn Vout 0
+V_body_mn body_mn gnd 0
+V_source_mn source_mn gnd 0
+
+*Definizione del tipo di analisi
+.CONTROL
+
+*Voltages: drain gate source
+*Current: drain gate source body
+
+dc TEMP 85 85 85
+print  V(drain_mp) V(Va) V(source_mp)
+print I(V_drain_mp) I(Vin1) I(V_source_mp) I(V_body_mp)
+print  V(drain_mn) V(Va) V(source_mn)
+print I(V_drain_mn) I(Vin1) I(V_source_mn) I(V_body_mn)
+
+quit
+.ENDC
+.END
