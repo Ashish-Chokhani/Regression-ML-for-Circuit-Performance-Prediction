@@ -5,7 +5,7 @@
 --- 
 ## Project Overview
 
-This project focuses on generating datasets essential for training regression-based machine learning models. These models are designed to estimate the leakage power and propagation delay of electronic circuits under varying conditions. This dataset generation and subsequent model training form a foundational step for Project-2.
+This project focuses on generating datasets essential for training regression-based machine learning models. These models are designed to estimate the leakage power and propagation delay of electronic circuits under varying conditions. This dataset generation and subsequent model training form a foundational step for this Project.
 
 ## Objectives
 
